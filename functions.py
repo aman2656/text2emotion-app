@@ -53,11 +53,34 @@ def lemmatization(words_big):
     stemmed_words = [lemma.lemmatize(word, 'n') for word in stemmed_words]
     return " ".join(stemmed_words)
 
+def removing_not(text):
+    d = {'not sad': 'Happy', 'not bad': 'Happy', 'not boring': 'Happy', 'not wrong': 'Happy',
+         'not bored': 'Happy', 'not jealous': 'Happy', 'not happy': 'Sad', 'not well': 'Sad',
+         'not suitable': 'Angry', 'not right': 'Angry', 'not good': 'Sad', 'not excited': 'Angry',
+         'not funny ': 'Sad', 'not  kind': 'Sad', 'not proud': 'Angry', 'not cool': 'Angry',
+         'not funny': 'Angry', 'not kind': 'Angry', 'not open': 'Angry', 'not safe': 'Fear',
+         'not enough': 'Empty', "not know": "Unknown"}
+    f = re.findall("not\s\w+", text)
+    for i in f:
+        try:
+            text = text.replace(i, d[i])
+        except:
+            pass
+    text = text.lower()
+    return text
+
+def removing_contradictions(text):
+    if text.count("n't"):
+        text = text.replace("n't", " not")
+    text = re.sub("ai\snot", "am not", text)
+    text = re.sub("wo\snot", "will not", text)
+    return text
 
 def cleaning(text):
     text = text.lower()
     text = re.sub(r'http\S+|www.\S+', '', text)
-
+    text = removing_contradictions(text)
+    text = removing_not(text)
     text = text.split()
     text = removing_shortcuts(text)
     text = ' '.join([i for i in text.split() if not i.isdigit()])
