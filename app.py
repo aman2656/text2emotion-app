@@ -7,7 +7,7 @@ import pandas as pd
 import numpy as np
 from functions import *
 import matplotlib.pyplot as plt
-
+import plotly.express as px
 
 cols = ['c','m','r','b', 'g']
 labels=['Happy', 'Angry', 'Surprise', 'Sad', 'Fear']
@@ -18,10 +18,6 @@ if st.button("submit"):
     if sentence:
         emotions = get_emotion(sentence)
         st.write(emotions)
-        plt.pie(list(emotions.values()),
-                labels=labels,
-                colors=cols,
-                startangle=90,
-                autopct='%1.1f%%')
+        fig = px.pie(values= list(emotions.values()), names= list(emotions.keys()), title="Emotion's Percentage")
         if sum(list(emotions.values())) is not 0:
-            st.pyplot()
+            st.plotly_chart(fig)
