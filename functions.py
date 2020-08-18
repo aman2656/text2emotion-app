@@ -9,6 +9,8 @@ nltk.download('stopwords')
 nltk.download('punkt')
 nltk.download('wordnet')
 import streamlit as st
+import emoji
+from emot.emo_unicode import UNICODE_EMO, EMOTICONS
 
 def removing_shortcuts(text):
     full_words = []
@@ -76,8 +78,19 @@ def removing_contradictions(text):
     text = re.sub("wo\snot", "will not", text)
     return text
 
+def emojis_extractor(text):
+    emoj = pd.read_csv("Emoji.csv")
+    a = " ".join(c for c in text if c in emoji.UNICODE_EMOJI).split()
+    for i in a:
+        try:
+            text = text.replace(i, " "+emoj['Emotion'][list(emoj["Emojis"]).index(i)]+" ")
+        except:
+            pass
+    return text.lower()
+
 def cleaning(text):
     text = text.lower()
+    text = emojis_extractor(text)
     text = re.sub(r'http\S+|www.\S+', '', text)
     text = removing_contradictions(text)
     text = removing_not(text)
