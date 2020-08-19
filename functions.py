@@ -56,12 +56,39 @@ def lemmatization(words_big):
     return " ".join(stemmed_words)
 
 def removing_not(text):
-    d = {'not sad': 'Happy', 'not bad': 'Happy', 'not boring': 'Happy', 'not wrong': 'Happy',
-         'not bored': 'Happy', 'not jealous': 'Happy', 'not happy': 'Sad', 'not well': 'Sad',
-         'not suitable': 'Angry', 'not right': 'Angry', 'not good': 'Sad', 'not excited': 'Angry',
-         'not funny ': 'Sad', 'not  kind': 'Sad', 'not proud': 'Angry', 'not cool': 'Angry',
-         'not funny': 'Angry', 'not kind': 'Angry', 'not open': 'Angry', 'not safe': 'Fear',
-         'not enough': 'Empty', "not know": "Unknown"}
+    d = {'not sad': 'Happy', 'not bad': 'Happy', 'not boring': 'Happy', 'not wrong': 'Happy', 'not bored': 'Happy',
+     'not jealous': 'Happy', 'not happy': 'Sad', 'not well': 'Sad', 'not suitable': 'Angry', 'not right': 'Angry',
+     'not good': 'Sad', 'not excited': 'Angry', 'not funny ': 'Sad', 'not  kind': 'Sad', 'not proud': 'Angry',
+     'not cool': 'Angry', 'not funny': 'Angry', 'not kind': 'Angry', 'not open': 'Angry', 'not safe': 'Fear',
+     'not enough': 'Empty', 'not know': 'Sad', 'not knowing': 'Sad', 'not believe': 'Angry', 'not believeing': 'Angry',
+     'not understand': 'Sad', 'not understanding': 'Sad', 'no doubt': 'Happy', 'not think': 'Sad', 'not thinking': 'Sad',
+     'not recognise': 'Sad', 'not recogniseing': 'Sad', 'not forget': 'Angry', 'not forgeting': 'Angry', 'not remember': 'Sad',
+     'not remembering': 'Sad', 'not imagine': 'Sad', 'not imagining': 'Sad', 'not mean': 'Sad', 'not meaning': 'Sad',
+     'not agree': 'Angry', 'not agreeing': 'Sad', 'not disagree': 'Happy', 'not disagreeing': 'Happy', 'not deny': 'Sad',
+     'not denying': 'Sad', 'not promise': 'Angry', 'not promiseing': 'Angry', 'not satisfy': 'Sad', 'not satisfying': 'Sad',
+     'not realise': 'Sad', 'not realiseing': 'Sad','not appear': 'Angry','not appearing': 'Angry',
+     'not please': 'Sad','not pleaseing': 'Sad','not impress': 'Sad','not impressing': 'Sad',
+     'not surprise': 'Sad','not surpriseing': 'Sad','not concern': 'Sad','not concerning': 'Sad','not have': 'Sad','not having': 'Sad',
+     'not own': 'Sad','not owning': 'Sad','not possess': 'Sad','not possessing': 'Sad','not lack': 'Sad','not lacking': 'Sad',
+     'not consist': 'Sad','not consisting': 'Sad','not involve': 'Sad','not involveing': 'Sad','not include': 'Sad','not includeing': 'Sad','not contain': 'Sad',
+     'not containing': 'Sad','not love': 'Sad','not loveing': 'Sad','not like': 'Angry','not likeing': 'Sad','not hate': 'Happy','not hating': 'Happy','not adore': 'Sad','not adoring': 'Sad','not prefer': 'Sad',
+     'not prefering': 'Sad','not care': 'Angry','not caring': 'Sad','not mind': 'Angry','not minding': 'Sad','not want': 'Angry','not wanting': 'Sad',
+     'not need': 'Angry','not needing': 'Angry','not desire': 'Sad','not desiring': 'Sad','not wish': 'Sad','not wishing': 'Sad','not hope': 'Sad','not hoping': 'Sad','not appreciate': 'Sad','not appreciating': 'Sad',
+     'not value': 'Sad','not valuing': 'Sad','not owe': 'Sad','not owing': 'Sad','not seem': 'Sad','not seeming': 'Sad','not fit': 'Sad','not fiting': 'Sad','not depend': 'Sad',
+     'not depending': 'Sad','not matter': 'Sad','not afford': 'Sad','not affording': 'Sad','not aim': 'Sad','not aiming': 'Sad','not attempt': 'Angry','not attempting': 'Angry','not ask': 'Angry',
+     'not asking': 'Angry', 'not arrange': 'Angry','not arranging': 'Angry','not beg': 'Angry','not beging': 'Angry','not begin': 'Angry','not begining': 'Angry','not careing': 'Angry','not choose': 'Angry','not choosing': 'Angry','not claim': 'Angry', 'not claiming': 'Angry',
+     'not consent': 'Angry','not consenting': 'Angry','not continue': 'Angry','not continuing': 'Angry','not dare': 'Angry','not daring': 'Angry','not decide': 'Sad',
+     'not deciding': 'Sad','not demand': 'Angry','not demanding': 'Angry','not deserve': 'Angry','not deserving': 'Angry','not expect': 'Angry',
+     'not expecting': 'Angry','not fail': 'Happy','not failing': 'Happy','not get': 'Sad','not getting': 'Sad','not hesitate': 'Sad','not hesitating': 'Sad','not hurry': 'Happy','not hurrying': 'Happy',
+     'not intend': 'Sad','not intending': 'Sad', 'not learn': 'Angry','not learning': 'Angry',
+     'not liking': 'Angry','not loving': 'Sad','not manage': 'Angry',
+     'not managing': 'Angry','not neglect': 'Sad','not neglecting': 'Sad','not offer': 'Angry','not offering': 'Angry',
+     'not plan': 'Angry','not planing': 'Angry','not prepare': 'Angry',
+     'not preparing': 'Angry','not pretend': 'Angry','not pretending': 'Angry','not proceed': 'Angry','not proceeding': 'Angry',
+     'not propose': 'Angry','not proposing': 'Sad','not refuse': 'Sad','not refuseing': 'Sad','not start': 'Sad',
+     'not starting': 'Sad','not stop': 'Happy','not stoping': 'Happy','not struggle': 'Angry','not struggling': 'Angry',
+     'not swear': 'Angry','not swearing': 'Angry','not threaten': 'Happy','not threatening': 'Happy','not try': 'Angry','not trying': 'Angry','not volunteer': 'Angry',
+     'not volunteering': 'Angry','not wait': 'Angry','not waiting': 'Angry','not feel': 'Sad','not feeling': 'Sad'}
     f = re.findall("not\s\w+", text)
     for i in f:
         try:
