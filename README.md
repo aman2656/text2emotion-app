@@ -1,1 +1,1 @@
-# pyemotion
+# text2emotion
